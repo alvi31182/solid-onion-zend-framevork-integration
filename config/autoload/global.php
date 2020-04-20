@@ -12,5 +12,16 @@
  */
 
 return [
-    // ...
+    'service_manager' => [
+        'factories' => [
+            'CustomerTable' => function($sm){
+                $factory  = new \App\Persitence\Zend\TableGetaway\TableGatewayFactory();
+                $hydrator = new \Zend\Hydrator\ClassMethods();
+
+                return new \App\Persitence\Zend\DataTable\CustomerTable(
+
+                );
+            }
+        ],
+    ]
 ];
