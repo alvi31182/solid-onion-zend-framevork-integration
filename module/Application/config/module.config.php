@@ -1,15 +1,18 @@
 <?php
+
 /**
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-mvc-skeleton for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-mvc-skeleton/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-mvc-skeleton/blob/master/LICENSE.md New BSD License
  */
+
+declare(strict_types=1);
 
 namespace Application;
 
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -21,37 +24,6 @@ return [
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
-                    ],
-                ],
-            ],
-            'customers' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/customers',
-                    'defaults' => [
-                        'controller' => 'Application\Controller\Customers',
-                        'action' => 'index',
-                    ],
-                ],
-            ],
-            'orders' => [
-                'type' => 'Segment',
-                'options' => [
-                    'route'=> '/orders',
-                    'defaults' => [
-                        'controller' => 'Application\Controller\Orders',
-                        'action'
-                    ],
-                ],
-            ],
-            'invoices' =>[
-                'type' => 'Segment',
-                'options' => [
-                    'route' => '/invoices',
-                    'defaults' => [
-                        'controller' => 'Application\Controller\Invoices',
-                        'action'
-                        => 'index',
                     ],
                 ],
             ],
