@@ -12,6 +12,8 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Laminas\Hydrator',
+    'Zend\Db',
     'Laminas\Router',
     'Laminas\Validator',
     'Application',

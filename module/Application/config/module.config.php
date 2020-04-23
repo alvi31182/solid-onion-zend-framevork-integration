@@ -27,6 +27,36 @@ return [
                     ],
                 ],
             ],
+            'customers' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/customers',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Customers',
+                        'action' => 'index',
+                    ],
+                ],
+            ],
+            'orders' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/orders',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Orders',
+                        'action' => 'index',
+                    ],
+                ],
+            ],
+            'invoices' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/invoices',
+                    'defaults' => [
+                        'controller' => 'Application\Controller\Invoices',
+                        'action' => 'index',
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
@@ -42,6 +72,11 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            'Application\Controller\Customers' => function($sm){
+                return new Controller\CustomersController(
+                    $sm->getServiceLocator()->get('CustomerTable')
+                );
+            }
         ],
     ],
     'view_manager' => [

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 
 namespace App\Domain\Entity;
@@ -14,7 +14,7 @@ class Order
     /**
      * @return mixed
      */
-    public function getCustomer()
+    public function getCustomer(): ?Customer
     {
         return $this->customer;
     }
@@ -23,7 +23,7 @@ class Order
      * @param $customer
      * @return $this
      */
-    public function setCustomer($customer)
+    public function setCustomer($customer): self
     {
         $this->customer = $customer;
         return $this;

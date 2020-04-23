@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8091:80"
+      - "443:443"
+    restart: always
+    volumes:
+      - ./:/var/www/solid
+    environment:
+      - NGINX_HOST=solid
+      - NGINX_PORT=8091
+    depends_on:
+      - php
+    networks:
+      - app-network-solid
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    ports:
+      - 9001:9001
+    volumes:
+      - ./:/var/www/solid
+    networks:
+      - app-network-solid
+networks:
+  app-network-solid:
+    driver: bridge

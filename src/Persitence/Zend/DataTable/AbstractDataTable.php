@@ -1,13 +1,12 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Persitence\Zend\DataTable;
 
 
 use App\Domain\Entity\AbstractEntity;
 use App\Domain\Repository\RepositoryInteface;
-use Zend\Db\TableGateway\TableGateway;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Hydrator\HydratorInterface;
+use Laminas\Db\TableGateway\TableGateway;
 
 abstract  class AbstractDataTable implements RepositoryInteface
 {
@@ -47,7 +46,7 @@ abstract  class AbstractDataTable implements RepositoryInteface
         return $this;
     }
 
-    public function bigin()
+    public function begin()
     {
         $this->getaway->getAdapter()->getDriver()->getConnection()->beginTransaction();
         return $this;
