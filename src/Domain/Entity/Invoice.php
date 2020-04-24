@@ -6,7 +6,7 @@ namespace App\Domain\Entity;
 class Invoice
 {
     private Order $order;
-    private \DateTimeImmutable $createdAd;
+    private \DateTimeImmutable $createdAt;
     private int $total;
 
     public function __construct(
@@ -15,7 +15,7 @@ class Invoice
         int $total
     )
     {
-        $this->createdAd = $invoiceDate;
+        $this->createdAt = $invoiceDate;
         $this->order = $order;
         $this->total = $total;
     }
@@ -32,13 +32,13 @@ class Invoice
 
     public function getInvoiceDate(): \DateTimeImmutable
     {
-        return $this->createdAd;
+        return $this->createdAt;
     }
 
 
     public function createdAt($invoiceDate): void
     {
-        $this->createdAd = $invoiceDate;
+        $this->createdAt = $invoiceDate;
     }
 
 
