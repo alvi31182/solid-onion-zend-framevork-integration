@@ -36,7 +36,7 @@ class Invoice
     }
 
 
-    public function createdAdd($invoiceDate): void
+    public function createdAt($invoiceDate): void
     {
         $this->createdAd = $invoiceDate;
     }
