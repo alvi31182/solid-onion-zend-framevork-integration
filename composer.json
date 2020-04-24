@@ -25,7 +25,10 @@
         "laminas/laminas-stdlib": "^3.2@dev",
         "zendframework/zend-stdlib": "^3.2@dev",
         "laminas/laminas-hydrator": "^3.0@dev",
-        "laminas/laminas-db": "^2.11@dev"
+        "laminas/laminas-db": "^2.11@dev",
+        "laminas/laminas-inputfilter": "^2.10@dev",
+        "laminas/laminas-mvc-plugin-flashmessenger": "^1.2@dev",
+        "laminas/laminas-view": "^2.11@dev"
     },
     "require-dev": {
     }

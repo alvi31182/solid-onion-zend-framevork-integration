@@ -10,6 +10,10 @@ declare(strict_types=1);
 
 namespace Application;
 
+use App\Domain\Service\InputFilter\CustomerInputFilter;
+use Application\Controller\CustomersController;
+use Application\Controller\OrdersController;
+use Laminas\Hydrator\ClassMethods;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -36,9 +40,36 @@ return [
                         'action' => 'index',
                     ],
                 ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'new' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/new',
+                            'constraints' => [
+                                'id' => '[0-9]+',
+                            ],
+                            'defaults' => [
+                                'action' => 'new-or-edit',
+                            ],
+                        ]
+                    ],
+                    'edit' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/edit/:id',
+                            'constraints' => [
+                                'id' => '[0-9]+',
+                            ],
+                            'defaults' => [
+                                'action' => 'new-or-edit',
+                            ],
+                        ]
+                    ],
+                ],
             ],
             'orders' => [
-                'type' => 'Segment',
+                'type' => Segment::class,
                 'options' => [
                     'route' => '/orders',
                     'defaults' => [
@@ -48,7 +79,7 @@ return [
                 ],
             ],
             'invoices' => [
-                'type' => 'Segment',
+                'type' => Segment::class,
                 'options' => [
                     'route' => '/invoices',
                     'defaults' => [
@@ -73,11 +104,23 @@ return [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
             'Application\Controller\Customers' => function($sm){
-                return new Controller\CustomersController(
-                    $sm->getServiceLocator()->get('CustomerTable')
+                return new CustomersController(
+                    $sm->getServiceLocator()->get('CustomerTable'),
+                    new CustomerInputFilter(),
+                    new ClassMethods()
+                );
+            },
+            'Application\Controller\Orders' => function($sm){
+                return new OrdersController(
+                    $sm->getServiceLocator()->get('OrderTable')
                 );
             }
         ],
+    ],
+    'view_helpers' => [
+        'invokables' => [
+            'validationErrors' => 'Application\View\Helper\ValidationErrors',
+        ]
     ],
     'view_manager' => [
         'display_not_found_reason' => true,

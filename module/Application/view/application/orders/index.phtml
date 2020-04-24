@@ -1,0 +1,20 @@
+<div class="page-header clearfix">
+    <h2 class="pull-left">Orders</h2>
+    <a href="/orders/new" class="btn btn-success pull-rig\
+ht">
+        Create Order</a>
+</div>
+<table class="table table-striped clearfix">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Order Number</th>
+        <th>Customer</th>
+        <th>Description</th>
+        <th class="text-right">Total</th>
+    </tr>
+    </thead>
+    <?php foreach ($this->orders as $order):?>
+        <?= $this->escapeHtml($order->getId());?>
+    <?php endforeach; ?>
+</table>

@@ -5,6 +5,7 @@ namespace App\Persitence\Zend\DataTable;
 
 use App\Domain\Entity\AbstractEntity;
 use App\Domain\Repository\RepositoryInteface;
+use Laminas\Db\Sql\Select;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\Db\TableGateway\TableGateway;
 
@@ -31,7 +32,9 @@ abstract  class AbstractDataTable implements RepositoryInteface
 
     public function getAll()
     {
-        return $this->getaway->select();
+        return $this->getaway->select(function(Select $select){
+               $select->order('id DESC');
+        });
     }
 
     public function persist(AbstractEntity $entity)

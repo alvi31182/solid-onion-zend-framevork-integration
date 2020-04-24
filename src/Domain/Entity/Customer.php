@@ -1,30 +1,32 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
 
 class Customer extends AbstractEntity
 {
-    protected string $name;
-    protected string $email;
+    protected $name;
+    protected $email;
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName($name): self
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail($email): self
+    public function setEmail($email)
     {
         $this->email = $email;
         return $this;
