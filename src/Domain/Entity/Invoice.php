@@ -5,62 +5,51 @@ namespace App\Domain\Entity;
 
 class Invoice
 {
-    protected $order;
-    protected $invoiceDate;
-    protected $total;
+    private Order $order;
+    private \DateTimeImmutable $createdAd;
+    private int $total;
 
-    /**
-     * @return mixed
-     */
-    public function getOrder()
+    public function __construct(
+        \DateTimeImmutable $invoiceDate,
+        Order $order,
+        int $total
+    )
+    {
+        $this->createdAd = $invoiceDate;
+        $this->order = $order;
+        $this->total = $total;
+    }
+
+    public function getOrder(): Order
     {
         return $this->order;
     }
 
-    /**
-     * @param mixed $order
-     * @return Invoice
-     */
-    public function setOrder($order)
+    public function setOrder($order): void
     {
         $this->order = $order;
-        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getInvoiceDate()
+    public function getInvoiceDate(): \DateTimeImmutable
     {
-        return $this->invoiceDate;
+        return $this->createdAd;
     }
 
-    /**
-     * @param mixed $invoiceDate
-     * @return Invoice
-     */
-    public function setInvoiceDate(\DateTime $invoiceDate)
+
+    public function createdAdd($invoiceDate): void
     {
-        $this->invoiceDate = $invoiceDate;
-        return $this;
+        $this->createdAd = $invoiceDate;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTotal()
+
+    public function getTotal(): int
     {
         return $this->total;
     }
 
-    /**
-     * @param mixed $total
-     * @return Invoice
-     */
-    public function setTotal($total)
+    public function setTotal($total): void
     {
         $this->total = $total;
-        return $this;
     }
 
 }

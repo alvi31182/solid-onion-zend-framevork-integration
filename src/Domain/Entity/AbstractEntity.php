@@ -7,21 +7,14 @@ namespace App\Domain\Entity;
 
 abstract class AbstractEntity
 {
-    protected $id;
+    protected int $id;
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id)
+    public function setId($id): self
     {
         $this->id = $id;
         return $this;

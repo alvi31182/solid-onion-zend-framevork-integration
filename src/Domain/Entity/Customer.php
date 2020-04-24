@@ -10,23 +10,23 @@ class Customer extends AbstractEntity
     protected $name;
     protected $email;
 
-    public function getName(): ?string
+    public function getName(): string
     {
-        return $this->name;
+        return (string) $this->name;
     }
 
-    public function setName($name)
+    public function setName($name): self
     {
         $this->name = $name;
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
-        return $this->email;
+        return (string) $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail($email): self
     {
         $this->email = $email;
         return $this;
