@@ -4,6 +4,7 @@ use App\Domain\Entity\Customer;
 use App\Domain\Entity\Invoice;
 use App\Domain\Entity\Order;
 use App\Persitence\Zend\DataTable\CustomerTable;
+use App\Persitence\Zend\DataTable\OrderTable;
 use App\Persitence\Zend\TableGetaway\TableGatewayFactory;
 use Laminas\Hydrator\ClassMethods;
 
@@ -41,7 +42,7 @@ return [
             'OrderTable' => function($sm){
                 $factory = new TableGatewayFactory();
                 $hydrator = new ClassMethods();
-                return new CustomerTable(
+                return new OrderTable(
                     $factory->createGateway(
                         $sm->get('Laminas\Db\Adapter\Adapter'),
                         $hydrator,

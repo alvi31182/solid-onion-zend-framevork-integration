@@ -2,8 +2,9 @@
 
 namespace App\Domain\Repository;
 
+use App\Core\Application\TransactionManager\TransactionHandlerInterface;
 
-interface CustomerRepositoryInterface extends RepositoryInteface
+interface CustomerRepositoryInterface extends TransactionHandlerInterface
 {
 
 }

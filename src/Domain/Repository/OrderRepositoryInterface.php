@@ -3,7 +3,7 @@
 namespace App\Domain\Repository;
 
 
-interface OrderRepositoryInterface extends RepositoryInteface
+interface OrderRepositoryInterface extends ReposytoryRead
 {
     public function getUninvoicedOrders();
 }

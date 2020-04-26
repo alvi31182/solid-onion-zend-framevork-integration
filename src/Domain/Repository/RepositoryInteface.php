@@ -8,8 +8,6 @@ interface RepositoryInteface
 {
 
     public function begin();
-
     public function persist(AbstractEntity $entity);
-
     public function commit();
 }
