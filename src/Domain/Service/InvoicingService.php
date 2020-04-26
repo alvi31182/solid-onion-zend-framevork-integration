@@ -8,8 +8,8 @@ use App\Domain\Repository\OrderRepositoryInterface;
 
 class InvoicingService
 {
-    protected $orderRepository;
-    protected $invoiceFacotory;
+    protected OrderRepositoryInterface $orderRepository;
+    protected InvoiceFactory $invoiceFacotory;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,

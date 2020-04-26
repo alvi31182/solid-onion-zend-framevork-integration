@@ -15,10 +15,9 @@ class Customer extends AbstractEntity
         return (string) $this->name;
     }
 
-    public function setName($name): self
+    public function setName($name): void
     {
         $this->name = $name;
-        return $this;
     }
 
     public function getEmail(): string
@@ -26,9 +25,8 @@ class Customer extends AbstractEntity
         return (string) $this->email;
     }
 
-    public function setEmail($email): self
+    public function setEmail($email): void
     {
         $this->email = $email;
-        return $this;
     }
 }

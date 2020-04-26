@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
-
 namespace App\Domain\Service\InputFilter;
+
 use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilter;
 use Laminas\Validator\EmailAddress;

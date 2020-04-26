@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-mvc-skeleton for the canonical source repository
- * @copyright https://github.com/laminas/laminas-mvc-skeleton/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-mvc-skeleton/blob/master/LICENSE.md New BSD License
- */
 
 declare(strict_types=1);
 
@@ -101,6 +96,9 @@ return [
         ],
     ],
     'controllers' => [
+        'invokables' => [
+            'Application\Controller\Index' => 'Application\Controller\IndexController'
+        ],
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
             'Application\Controller\Customers' => function($sm){

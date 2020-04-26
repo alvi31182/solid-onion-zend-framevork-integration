@@ -1,15 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace App\Domain\Repository;
+
+namespace App\Core\Application\TransactionManager;
+
 
 use App\Domain\Entity\AbstractEntity;
 
-interface RepositoryInteface
+interface TransactionHandlerInterface
 {
-
     public function begin();
-
     public function persist(AbstractEntity $entity);
-
     public function commit();
 }

@@ -28,7 +28,8 @@
         "laminas/laminas-db": "^2.11@dev",
         "laminas/laminas-inputfilter": "^2.10@dev",
         "laminas/laminas-mvc-plugin-flashmessenger": "^1.2@dev",
-        "laminas/laminas-view": "^2.11@dev"
+        "laminas/laminas-view": "^2.11@dev",
+        "laminas/laminas-servicemanager": "^3.3@dev"
     },
     "require-dev": {
     }
