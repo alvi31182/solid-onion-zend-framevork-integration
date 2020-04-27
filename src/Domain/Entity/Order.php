@@ -4,10 +4,10 @@ namespace App\Domain\Entity;
 
 class Order
 {
-    private $customer;
-    private $ordernumber;
-    private $description;
-    private $total;
+    private Customer $customer;
+    private int $ordernumber;
+    private string $description;
+    private int $total;
 
     /**
      * @return mixed
@@ -38,10 +38,9 @@ class Order
      * @param $ordernumber
      * @return $this
      */
-    public function setOrdernumber($ordernumber)
+    public function setOrdernumber($ordernumber): void
     {
         $this->ordernumber = $ordernumber;
-        return $this;
     }
 
     /**
