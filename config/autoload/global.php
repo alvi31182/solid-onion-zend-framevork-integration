@@ -26,14 +26,18 @@ return [
                     $hydrator
                 );
             },
-            'InvoiceTable' => function($sm){
+            'InvoiceTable' => function($sm) use (&$date, &$total) {
                 $factory = new TableGatewayFactory();
                 $hydrator = new ClassMethods();
                 return new CustomerTable(
                     $factory->createGateway(
                         $sm->get('Laminas\Db\Adapter\Adapter'),
                         $hydrator,
-                        new Invoice(),
+                        new Invoice(
+                            new Order(),
+                            $date,
+                            $total
+                        ),
                         'invoices'
                     ),
                     $hydrator

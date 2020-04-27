@@ -7,8 +7,8 @@ namespace App\Domain\Entity;
 
 class Customer extends AbstractEntity
 {
-    protected $name;
-    protected $email;
+    private string $name;
+    private string $email;
 
     public function getName(): string
     {

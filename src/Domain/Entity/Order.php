@@ -1,15 +1,13 @@
 <?php declare(strict_types=1);
 
-
 namespace App\Domain\Entity;
-
 
 class Order
 {
-    protected $customer;
-    protected $ordernumber;
-    protected $description;
-    protected $total;
+    private $customer;
+    private $ordernumber;
+    private $description;
+    private $total;
 
     /**
      * @return mixed
@@ -21,18 +19,17 @@ class Order
 
     /**
      * @param $customer
-     * @return $this
+     * @return void
      */
-    public function setCustomer($customer): self
+    public function setCustomer($customer): void
     {
         $this->customer = $customer;
-        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getOrdernumber()
+    public function getOrdernumber(): int
     {
         return $this->ordernumber;
     }
@@ -50,19 +47,18 @@ class Order
     /**
      * @return mixed
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
     /**
      * @param mixed $description
-     * @return Order
+     * @return void
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = $description;
-        return $this;
     }
 
     /**
@@ -75,12 +71,11 @@ class Order
 
     /**
      * @param mixed $total
-     * @return Order
+     * @return void
      */
-    public function setTotal($total): self
+    public function setTotal($total): void
     {
         $this->total = $total;
-        return $this;
     }
 
 
