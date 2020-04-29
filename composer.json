@@ -29,8 +29,10 @@
         "laminas/laminas-inputfilter": "^2.10@dev",
         "laminas/laminas-mvc-plugin-flashmessenger": "^1.2@dev",
         "laminas/laminas-view": "^2.11@dev",
-        "laminas/laminas-servicemanager": "^3.3@dev"
+        "laminas/laminas-servicemanager": "^3.3@dev",
+        "laminas/laminas-i18n": "^2.10@dev"
     },
     "require-dev": {
+        "phpunit/phpunit": "^9"
     }
 }

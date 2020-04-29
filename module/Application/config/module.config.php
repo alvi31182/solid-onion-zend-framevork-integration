@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Application;
 
 use App\Domain\Service\InputFilter\CustomerInputFilter;
+use App\Domain\Service\InputFilter\OrderInputFilter;
 use Application\Controller\CustomersController;
 use Application\Controller\OrdersController;
 use Laminas\Hydrator\ClassMethods;
@@ -66,7 +67,7 @@ return [
             'orders' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/orders',
+                    'route' => '/orders[/:action[/:id]]',
                     'defaults' => [
                         'controller' => 'Application\Controller\Orders',
                         'action' => 'index',
@@ -110,7 +111,10 @@ return [
             },
             'Application\Controller\Orders' => function($sm){
                 return new OrdersController(
-                    $sm->getServiceLocator()->get('OrderTable')
+                    $sm->getServiceLocator()->get('OrderTable'),
+                    $sm->getServiceLocator()->get('CustomerTable'),
+                    new OrderInputFilter(),
+                    $sm->getServiceLocator()->get('OrderHydrator')
                 );
             }
         ],

@@ -1,11 +1,8 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
-
-class Customer extends AbstractEntity
+final class Customer extends AbstractEntity
 {
     private string $name;
     private string $email;

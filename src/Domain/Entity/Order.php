@@ -2,12 +2,12 @@
 
 namespace App\Domain\Entity;
 
-class Order
+class Order extends \DateTimeImmutable
 {
-    private Customer $customer;
-    private int $ordernumber;
-    private string $description;
-    private int $total;
+    private  $customer;
+    private  $ordernumber;
+    private  $description;
+    private  $total;
 
     /**
      * @return mixed
@@ -29,14 +29,14 @@ class Order
     /**
      * @return mixed
      */
-    public function getOrdernumber(): int
+    public function getOrdernumber(): ?int
     {
         return $this->ordernumber;
     }
 
     /**
      * @param $ordernumber
-     * @return $this
+     * @return void
      */
     public function setOrdernumber($ordernumber): void
     {
@@ -46,7 +46,7 @@ class Order
     /**
      * @return mixed
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -63,7 +63,7 @@ class Order
     /**
      * @return mixed
      */
-    public function getTotal(): int
+    public function getTotal(): ?float
     {
         return $this->total;
     }

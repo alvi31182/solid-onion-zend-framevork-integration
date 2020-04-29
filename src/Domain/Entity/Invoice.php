@@ -2,8 +2,7 @@
 
 namespace App\Domain\Entity;
 
-
-class Invoice
+final class Invoice
 {
     private Order $order;
     private \DateTimeImmutable $createdAt;
