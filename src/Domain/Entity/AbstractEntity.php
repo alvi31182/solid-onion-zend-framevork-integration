@@ -5,20 +5,14 @@ namespace App\Domain\Entity;
 
 abstract class AbstractEntity
 {
-    protected int $id;
+    protected $id;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param $id
-     */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }

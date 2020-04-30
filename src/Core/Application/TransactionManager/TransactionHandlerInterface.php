@@ -3,7 +3,6 @@
 
 namespace App\Core\Application\TransactionManager;
 
-
 use App\Domain\Entity\AbstractEntity;
 
 interface TransactionHandlerInterface

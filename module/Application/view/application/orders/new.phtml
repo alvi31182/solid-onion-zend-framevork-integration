@@ -13,15 +13,15 @@
                 </option>
             <?php endforeach; ?>
         </select>
-        <?= $this->validationErrors('customer.id') ?>
+        <?= $this->validationErrors('customer_id') ?>
     </div>
     <div class="form-group">
         <label for="orderNumber">Order Number:</label>
         <input type="text" class="form-control"
-               ame="orderNumber"
-               id="order_number"
+               name="orderNumber"
+               id="orderNumber"
                placeholder="Enter Order Number"
-               value="<?= $this->escapeHtmlAttr($this->order->getOrderNumber()) ?>">
+               value="<?= $this->escapeHtmlAttr($this->order->getOrderNumber()) ?>" />
                <?= $this->validationErrors('orderNumber') ?>
     </div>
     <div class="form-group">

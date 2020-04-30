@@ -2,7 +2,7 @@
 
 namespace App\Domain\Entity;
 
-class Order extends \DateTimeImmutable
+final class Order extends AbstractEntity
 {
     private  $customer;
     private  $ordernumber;
@@ -12,7 +12,7 @@ class Order extends \DateTimeImmutable
     /**
      * @return mixed
      */
-    public function getCustomer(): ?Customer
+    public function getCustomer()
     {
         return $this->customer;
     }
@@ -21,7 +21,7 @@ class Order extends \DateTimeImmutable
      * @param $customer
      * @return void
      */
-    public function setCustomer($customer): void
+    public function setCustomer($customer)
     {
         $this->customer = $customer;
     }
@@ -29,7 +29,7 @@ class Order extends \DateTimeImmutable
     /**
      * @return mixed
      */
-    public function getOrdernumber(): ?int
+    public function getOrdernumber()
     {
         return $this->ordernumber;
     }
@@ -38,7 +38,7 @@ class Order extends \DateTimeImmutable
      * @param $ordernumber
      * @return void
      */
-    public function setOrdernumber($ordernumber): void
+    public function setOrdernumber($ordernumber)
     {
         $this->ordernumber = $ordernumber;
     }
@@ -55,7 +55,7 @@ class Order extends \DateTimeImmutable
      * @param mixed $description
      * @return void
      */
-    public function setDescription($description): void
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -63,7 +63,7 @@ class Order extends \DateTimeImmutable
     /**
      * @return mixed
      */
-    public function getTotal(): ?float
+    public function getTotal(): ?string
     {
         return $this->total;
     }
@@ -72,7 +72,7 @@ class Order extends \DateTimeImmutable
      * @param mixed $total
      * @return void
      */
-    public function setTotal($total): void
+    public function setTotal($total)
     {
         $this->total = $total;
     }

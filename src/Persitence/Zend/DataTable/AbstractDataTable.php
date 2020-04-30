@@ -9,7 +9,7 @@ use Laminas\Db\Sql\Select;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\Db\TableGateway\TableGateway;
 
-abstract  class AbstractDataTable implements RepositoryInteface
+abstract class AbstractDataTable implements RepositoryInteface
 {
     protected TableGateway $getaway;
     protected HydratorInterface $hydrator;
@@ -41,7 +41,7 @@ abstract  class AbstractDataTable implements RepositoryInteface
     {
         $data = $this->hydrator->extract($entity);
         if($this->hasIdentity($entity)){
-            $this->getaway->update($data,['id' => $entity->getId()]);
+            $this->getaway->update($data, ['id' => $entity->getId()]);
         }else{
             $this->getaway->insert($data);
             $entity->setId($this->getaway->getLastInsertValue());

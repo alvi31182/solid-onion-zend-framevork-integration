@@ -2,11 +2,11 @@
 
 namespace Application\Controller;
 
-use App\Domain\Entity\Customer;
 use App\Domain\Entity\Order;
 use App\Domain\Repository\CustomerRepositoryInterface;
 use App\Domain\Repository\OrderRepositoryInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
 use Laminas\View\Model\ViewModel;
 use Laminas\InputFilter\InputFilter;
 use App\Persitence\Hydrator\OrderHydrator;
@@ -54,6 +54,30 @@ class OrdersController extends AbstractActionController
     public function newAction() {
         $viewModel = new ViewModel();
         $order = new Order();
+
+        if($this->getRequest()->isPost()){
+            $this->inputFilter->setData($this->params()->fromPost());
+            if($this->inputFilter->isValid()){
+                $this->hydrator->hydrate(
+                    $this->inputFilter->getValues(),
+                    $order
+                );
+                $this->orderRepository->begin()
+                    ->persist($order)
+                    ->commit();
+                $flash = new FlashMessenger();
+                $flash->addSuccessMessage('Order created!');
+
+                $this->redirect()->toUrl('/orders/view/' . $order->getId());
+            }else{
+                $this->hydrator->hydrate(
+                    $this->params()->fromPost(),
+                    $order
+                );
+                $viewModel->setVariable('errors', $this->inputFilter->getMessages());
+            }
+        }
+
         $viewModel->setVariable(
             'customers',
             $this->customerRepository->getAll()

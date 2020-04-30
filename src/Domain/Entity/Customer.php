@@ -4,10 +4,11 @@ namespace App\Domain\Entity;
 
 final class Customer extends AbstractEntity
 {
-    private string $name;
-    private string $email;
+    private $name;
 
-    public function getName(): string
+    private $email;
+
+    public function getName(): ?string
     {
         return (string) $this->name;
     }
