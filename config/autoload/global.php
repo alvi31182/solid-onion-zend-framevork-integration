@@ -8,7 +8,6 @@ use App\Persitence\Zend\DataTable\CustomerTable;
 use App\Persitence\Zend\DataTable\InvoiceTable;
 use App\Persitence\Zend\DataTable\OrderTable;
 use App\Persitence\Zend\TableGetaway\TableGatewayFactory;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 
 return [
@@ -18,7 +17,7 @@ return [
 
             'CustomerTable' => function($sm) {
                 $factory = new TableGatewayFactory();
-                $hydrator = new ClassMethods();
+                $hydrator = new ClassMethodsHydrator();
                 return new CustomerTable(
                     $factory->createGateway(
                         $sm->get('Laminas\Db\Adapter\Adapter'),
@@ -31,7 +30,7 @@ return [
             },
             'InvoiceTable' => function($sm) use (&$date, &$total) {
                 $factory = new TableGatewayFactory();
-                $hydrator = new ClassMethods();
+                $hydrator = new ClassMethodsHydrator();
                 return new InvoiceTable(
                     $factory->createGateway(
                         $sm->get('Laminas\Db\Adapter\Adapter'),

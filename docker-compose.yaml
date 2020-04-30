@@ -1,0 +1,54 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/solid
+    ports:
+      - "8088:80"
+    depends_on:
+      - php-fpm
+    networks:
+      - solid-ddd
+
+  php-fpm:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/solid
+    depends_on:
+      - solidpostgres
+    networks:
+      - solid-ddd
+
+  php-cli:
+    build:
+      context: ./docker/php-cli
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/solid
+    depends_on:
+      - solidpostgres
+    working_dir: /var/www/solid
+    tty: true
+    networks:
+      - solid-ddd
+
+  solidpostgres:
+    image: postgres:11-alpine
+    restart: always
+    environment:
+        POSTGRES_USER: app
+        POSTGRES_PASSWORD: secret
+        POSTGRES_DB: app
+    ports:
+      - 5433:5433
+    networks:
+      - solid-ddd
+
+networks:
+  solid-ddd:
+    driver: bridge

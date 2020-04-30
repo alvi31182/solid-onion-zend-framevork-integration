@@ -26,5 +26,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-install -j$(nproc) gd \
   && docker-php-source delete
 
+WORKDIR /var/www/solid
+
 # изменение UID пользователя `www-data`, (если нужно)
 # RUN usermod -u 33 www-data

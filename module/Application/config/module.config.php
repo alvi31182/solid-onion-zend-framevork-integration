@@ -1,15 +1,12 @@
 <?php
 
-
-declare(strict_types=1);
-
 namespace Application;
 
 use App\Domain\Service\InputFilter\CustomerInputFilter;
 use App\Domain\Service\InputFilter\OrderInputFilter;
 use Application\Controller\CustomersController;
 use Application\Controller\OrdersController;
-use Laminas\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -106,7 +103,7 @@ return [
                 return new CustomersController(
                     $sm->getServiceLocator()->get('CustomerTable'),
                     new CustomerInputFilter(),
-                    new ClassMethods()
+                    new ClassMethodsHydrator()
                 );
             },
             'Application\Controller\Orders' => function($sm){
