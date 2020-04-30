@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Core\Application\TransactionManager;
 
@@ -16,8 +18,7 @@ final class TransactionManager
         TransactionHandlerInterface $transactionHandler,
         TableGateway $getaway,
         HydratorInterface $hydrator
-    )
-    {
+    ) {
         $this->transactionHandler = $transactionHandler;
         $this->getaway = $getaway;
         $this->hydrator = $hydrator;
@@ -32,9 +33,9 @@ final class TransactionManager
     public function persist(AbstractEntity $entity)
     {
         $data = $this->hydrator->extract($entity);
-        if($this->hasIdentity($entity)){
-            $this->getaway->update($data,['id' => $entity->getId()]);
-        }else{
+        if ($this->hasIdentity($entity)) {
+            $this->getaway->update($data, ['id' => $entity->getId()]);
+        } else {
             $this->getaway->insert($data);
             $entity->setId($this->getaway->getLastInsertValue());
         }

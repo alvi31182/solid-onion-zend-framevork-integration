@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
@@ -12,8 +13,7 @@ final class Invoice
         \DateTimeImmutable $invoiceDate,
         Order $order,
         int $total
-    )
-    {
+    ) {
         $this->createdAt = $invoiceDate;
         $this->order = $order;
         $this->total = $total;
@@ -34,6 +34,10 @@ final class Invoice
         return $this->createdAt;
     }
 
+    public function setInvoiceDate($date): void
+    {
+        $this->createdAt = $date;
+    }
 
     public function createdAt($invoiceDate): void
     {

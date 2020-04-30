@@ -14,9 +14,8 @@ class OrderHydrator implements HydratorInterface
     public function __construct(
         HydratorInterface $hydrator,
         RepositoryInteface $customerRepository
-    )
-    {
-        $this->wrappeHydrator  = $hydrator;
+    ) {
+        $this->wrappeHydrator = $hydrator;
         $this->customerRepository = $customerRepository;
     }
 
@@ -37,7 +36,7 @@ class OrderHydrator implements HydratorInterface
             unset($data['customer']);
         }
 
-        if(isset($data['customer_id'])){
+        if (isset($data['customer_id'])) {
             $order->setCustomer(
                 $this->customerRepository->getById($data['customer_id'])
             );
@@ -48,6 +47,5 @@ class OrderHydrator implements HydratorInterface
             $order->setCustomer($customer);
         }
         return $order;
-
     }
 }

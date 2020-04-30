@@ -1,13 +1,15 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
 final class Order extends AbstractEntity
 {
-    private  $customer;
-    private  $ordernumber;
-    private  $description;
-    private  $total;
+    private $customer;
+    private $ordernumber;
+    private $description;
+    private $total;
 
     /**
      * @return mixed

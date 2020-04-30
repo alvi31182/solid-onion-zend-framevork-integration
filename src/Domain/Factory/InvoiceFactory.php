@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace App\Domain\Factory;
 
@@ -11,7 +12,7 @@ class InvoiceFactory
     {
         $invoice = new Invoice();
         $invoice->setOrder($order);
-        $invoice->setInvoiceDate(new \DateTime());
+        $invoice->setInvoiceDate(new \DateTimeImmutable());
         $invoice->setTotal($invoice->getTotal());
 
         return $invoice;

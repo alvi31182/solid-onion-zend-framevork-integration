@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
@@ -10,7 +11,7 @@ final class Customer extends AbstractEntity
 
     public function getName(): ?string
     {
-        return (string) $this->name;
+        return (string)$this->name;
     }
 
     public function setName($name): void
@@ -20,7 +21,7 @@ final class Customer extends AbstractEntity
 
     public function getEmail(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     public function setEmail($email): void

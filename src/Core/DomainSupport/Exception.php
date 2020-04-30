@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace App\Core\DomainSupport;
 
@@ -18,7 +19,7 @@ abstract class Exception extends \Exception
         try {
             $str = (new ReflectionClass($this))->getShortName();
         } catch (ReflectionException $e) {
-            return $e->getMessage() . ' - ' . $e->getCode(). "\n" . $e->getLine();
+            return $e->getMessage() . ' - ' . $e->getCode() . "\n" . $e->getLine();
         }
 
         $str[0] = strtolower($str[0]);
