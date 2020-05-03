@@ -7,7 +7,6 @@ use App\Domain\Entity\Customer;
 use App\Domain\Repository\CustomerRepositoryInterface;
 use App\Domain\Service\InputFilter\CustomerInputFilter;
 use Laminas\Hydrator\HydratorInterface;
-use Laminas\InputFilter\InputFilterAwareInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
 use Laminas\View\Model\ViewModel;
@@ -23,8 +22,7 @@ class CustomersController extends AbstractActionController
         CustomerRepositoryInterface $customerRepository,
         CustomerInputFilter $inputFilter,
         HydratorInterface $hydrator
-    )
-    {
+    ) {
         $this->customersRepository = $customerRepository;
         $this->inputFilter = $inputFilter;
         $this->hydrator = $hydrator;
@@ -43,10 +41,10 @@ class CustomersController extends AbstractActionController
         $id = $this->params()->fromRoute('id');
         $customer = $id ? $this->customersRepository->getById($id) : new Customer();
 
-        if($this->getRequest()->isPost()){
+        if ($this->getRequest()->isPost()) {
             $this->inputFilter->setData($this->params()->fromPost());
 
-            if($this->inputFilter->isValid()){
+            if ($this->inputFilter->isValid()) {
                 $customer = $this->hydrator->hydrate(
                     $this->inputFilter->getValues(),
                     $customer
@@ -54,9 +52,10 @@ class CustomersController extends AbstractActionController
                 $this->customersRepository->begin()
                     ->persist($customer)
                     ->commit();
-                $flash = new FlashMessenger();
-                $flash->addSuccessMessage('Customer saved!');
-            }else{
+                /*$flash =  new FlashMessenger();
+                $flash->addSuccessMessage("Customer saved");*/
+                $this->redirect()->toUrl('/customers');
+            } else {
                 $this->hydrator->hydrate(
                     $this->params()->fromPost(),
                     $customer

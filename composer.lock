@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0420f66d28fb4d6c8a73ca95fb2ca64d",
+    "content-hash": "bb6da1f94fa360361026a3c57cc9c4d3",
     "packages": [
         {
             "name": "brick/math",
@@ -3547,7 +3547,8 @@
         "laminas/laminas-mvc-plugin-flashmessenger": 20,
         "laminas/laminas-view": 20,
         "laminas/laminas-servicemanager": 20,
-        "laminas/laminas-i18n": 20
+        "laminas/laminas-i18n": 20,
+        "laminas/laminas-session": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

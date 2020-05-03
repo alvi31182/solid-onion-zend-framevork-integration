@@ -4,8 +4,6 @@ namespace Application;
 
 use App\Domain\Service\InputFilter\CustomerInputFilter;
 use App\Domain\Service\InputFilter\OrderInputFilter;
-use Application\Controller\CustomersController;
-use Application\Controller\OrdersController;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
@@ -29,7 +27,7 @@ return [
                 'options' => [
                     'route' => '/customers',
                     'defaults' => [
-                        'controller' => 'Application\Controller\Customers',
+                        'controller' => Controller\CustomersController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -66,7 +64,7 @@ return [
                 'options' => [
                     'route' => '/orders[/:action[/:id]]',
                     'defaults' => [
-                        'controller' => 'Application\Controller\Orders',
+                        'controller' => Controller\OrdersController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -99,19 +97,19 @@ return [
         ],
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
-            'Application\Controller\Customers' => function ($sm) {
-                return new CustomersController(
-                    $sm->getServiceLocator()->get('CustomerTable'),
+            Controller\CustomersController::class => function ($sm) {
+                return new Controller\CustomersController(
+                    $sm->get('CustomerTable'),
                     new CustomerInputFilter(),
                     new ClassMethodsHydrator()
                 );
             },
-            'Application\Controller\Orders' => function ($sm) {
-                return new OrdersController(
-                    $sm->getServiceLocator()->get('OrderTable'),
-                    $sm->getServiceLocator()->get('CustomerTable'),
+            Controller\OrdersController::class => function ($sm) {
+                return new Controller\OrdersController(
+                    $sm->get('OrderTable'),
+                    $sm->get('CustomerTable'),
                     new OrderInputFilter(),
-                    $sm->getServiceLocator()->get('OrderHydrator')
+                    $sm->get('OrderHydrator')
                 );
             }
         ],

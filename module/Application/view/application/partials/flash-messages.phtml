@@ -1,20 +1,17 @@
 <?php
 
-use Laminas\Mvc\Plugin\FlashMessenger\View\Helper\FlashMessenger;
+use Laminas\Mvc\Plugin\FlashMessenger\FlashMessenger;
 
-$flash = new FlashMessenger();
-    $flash->setMessageOpenFormat(
-        '<div%s role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                          <div>'
-    )
-        ->setMessageSeparatorString('<div></div>')
-        ->setMessageCloseString('<div></div>')
-    ;
+    $flash = $this->flashMessenger();
+    $flash->setMessageOpenFormat('<div%s>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+    </button>
+    <ul><li>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
 ?>
 
 <?php
-    echo $flash->render('success',['alert', 'alert-dismissible', 'alert-success']);
+
 ?>

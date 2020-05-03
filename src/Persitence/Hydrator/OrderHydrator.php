@@ -3,17 +3,17 @@
 namespace App\Persitence\Hydrator;
 
 use App\Domain\Entity\Customer;
-use App\Domain\Repository\RepositoryInteface;
+use App\Domain\Repository\CustomerRepositoryInterface;
 use Laminas\Hydrator\HydratorInterface;
 
 class OrderHydrator implements HydratorInterface
 {
     private HydratorInterface $wrappeHydrator;
-    private RepositoryInteface $customerRepository;
+    private CustomerRepositoryInterface $customerRepository;
 
     public function __construct(
         HydratorInterface $hydrator,
-        RepositoryInteface $customerRepository
+        CustomerRepositoryInterface $customerRepository
     ) {
         $this->wrappeHydrator = $hydrator;
         $this->customerRepository = $customerRepository;
@@ -21,10 +21,16 @@ class OrderHydrator implements HydratorInterface
 
     public function extract(object $object): array
     {
-        return $this->wrappeHydrator->extract($object);
+        $data = $this->wrappeHydrator->extract($object);
+
+        if(array_key_exists('customer', $data) && !empty($data['customer'])){
+            $data['customer_id'] = $data['customer']->getId();
+            unset($data['customer']);
+        }
+        return $data;
     }
 
-    public function hydrate(array $data, $order)
+    public function hydrate($data, $order)
     {
         $customer = null;
 
@@ -38,11 +44,12 @@ class OrderHydrator implements HydratorInterface
 
         if (isset($data['customer_id'])) {
             $order->setCustomer(
-                $this->customerRepository->getById($data['customer_id'])
+               $customer = $this->customerRepository->getById($data['customer_id'])
             );
         }
 
         $this->wrappeHydrator->hydrate($data, $order);
+
         if ($customer) {
             $order->setCustomer($customer);
         }

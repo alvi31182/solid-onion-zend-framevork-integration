@@ -43,6 +43,7 @@ abstract class AbstractDataTable implements RepositoryInteface
         if($this->hasIdentity($entity)){
             $this->getaway->update($data, ['id' => $entity->getId()]);
         }else{
+           // print_r($data); die();
             $this->getaway->insert($data);
             $entity->setId($this->getaway->getLastInsertValue());
         }

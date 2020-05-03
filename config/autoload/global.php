@@ -51,9 +51,11 @@ return [
                     $sm->get('CustomerTable')
                 );
             },
+
             'OrderTable' => function($sm){
                 $factory = new TableGatewayFactory();
-                $hydrator = new ClassMethodsHydrator();
+                $hydrator = $sm->get('OrderHydrator');
+
                 return new OrderTable(
                     $factory->createGateway(
                         $sm->get('Laminas\Db\Adapter\Adapter'),

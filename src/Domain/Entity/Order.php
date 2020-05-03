@@ -23,7 +23,7 @@ final class Order extends AbstractEntity
      * @param $customer
      * @return void
      */
-    public function setCustomer($customer)
+    public function setCustomer($customer): void
     {
         $this->customer = $customer;
     }
@@ -31,7 +31,7 @@ final class Order extends AbstractEntity
     /**
      * @return mixed
      */
-    public function getOrdernumber()
+    public function getOrderNumber()
     {
         return $this->ordernumber;
     }
@@ -40,7 +40,7 @@ final class Order extends AbstractEntity
      * @param $ordernumber
      * @return void
      */
-    public function setOrdernumber($ordernumber)
+    public function setOrderNumber($ordernumber)
     {
         $this->ordernumber = $ordernumber;
     }
@@ -57,7 +57,7 @@ final class Order extends AbstractEntity
      * @param mixed $description
      * @return void
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = $description;
     }
@@ -74,7 +74,7 @@ final class Order extends AbstractEntity
      * @param mixed $total
      * @return void
      */
-    public function setTotal($total)
+    public function setTotal($total): void
     {
         $this->total = $total;
     }
