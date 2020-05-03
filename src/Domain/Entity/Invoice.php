@@ -42,7 +42,7 @@ final class Invoice
     {
         $this->createdAt = $invoiceDate;
     }
-    
+
     public function getTotal(): int
     {
         return $this->total;

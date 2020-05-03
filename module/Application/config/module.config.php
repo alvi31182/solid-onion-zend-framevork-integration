@@ -10,6 +10,35 @@ use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
+    'controllers' => [
+        'factories' => [
+
+            Controller\IndexController::class => InvokableFactory::class,
+
+            Controller\CustomersController::class => function ($sm) {
+                return new Controller\CustomersController(
+                    $sm->get('CustomerTable'),
+                    new CustomerInputFilter(),
+                    new ClassMethodsHydrator()
+                );
+            },
+
+            Controller\OrdersController::class => function ($sm) {
+                return new Controller\OrdersController(
+                    $sm->get('OrderTable'),
+                    $sm->get('CustomerTable'),
+                    new OrderInputFilter(),
+                    $sm->get('OrderHydrator')
+                );
+            },
+
+            Controller\InvoicesController::class => function ($sm) {
+                return new Controller\InvoicesController(
+                    $sm->get('InvoiceTable')
+                );
+            }
+        ],
+    ],
     'router' => [
         'routes' => [
             'home' => [
@@ -63,6 +92,10 @@ return [
                 'type' => Segment::class,
                 'options' => [
                     'route' => '/orders[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ],
                     'defaults' => [
                         'controller' => Controller\OrdersController::class,
                         'action' => 'index',
@@ -74,7 +107,7 @@ return [
                 'options' => [
                     'route' => '/invoices',
                     'defaults' => [
-                        'controller' => 'Application\Controller\Invoices',
+                        'controller' => Controller\InvoicesController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -91,29 +124,7 @@ return [
             ],
         ],
     ],
-    'controllers' => [
-        'invokables' => [
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
-        ],
-        'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
-            Controller\CustomersController::class => function ($sm) {
-                return new Controller\CustomersController(
-                    $sm->get('CustomerTable'),
-                    new CustomerInputFilter(),
-                    new ClassMethodsHydrator()
-                );
-            },
-            Controller\OrdersController::class => function ($sm) {
-                return new Controller\OrdersController(
-                    $sm->get('OrderTable'),
-                    $sm->get('CustomerTable'),
-                    new OrderInputFilter(),
-                    $sm->get('OrderHydrator')
-                );
-            }
-        ],
-    ],
+
     'view_helpers' => [
         'invokables' => [
             'validationErrors' => 'Application\View\Helper\ValidationErrors',

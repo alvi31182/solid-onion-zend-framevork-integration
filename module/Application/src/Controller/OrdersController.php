@@ -23,25 +23,27 @@ class OrdersController extends AbstractActionController
         CustomerRepositoryInterface $customerRepository,
         InputFilter $inputFilter,
         OrderHydrator $hydrator
-    )
-    {
+    ) {
         $this->orderRepository = $orderRepository;
         $this->customerRepository = $customerRepository;
         $this->inputFilter = $inputFilter;
         $this->hydrator = $hydrator;
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         return [
             'orders' => $this->orderRepository->getAll()
         ];
     }
 
-    public function viewAction() {
+    public function viewAction()
+    {
+
         $id = $this->params()->fromPost('id');
         $order = $this->orderRepository->getById($id);
 
-        if(!$order){
+        if (!$order) {
             $this->getResponse()->setStatusCode('404');
             return null;
         }
@@ -51,13 +53,14 @@ class OrdersController extends AbstractActionController
         ];
     }
 
-    public function newAction() {
+    public function newAction()
+    {
         $viewModel = new ViewModel();
         $order = new Order();
 
-        if($this->getRequest()->isPost()){
+        if ($this->getRequest()->isPost()) {
             $this->inputFilter->setData($this->params()->fromPost());
-            if($this->inputFilter->isValid()){
+            if ($this->inputFilter->isValid()) {
                 $this->hydrator->hydrate(
                     $this->inputFilter->getValues(),
                     $order
@@ -68,12 +71,11 @@ class OrdersController extends AbstractActionController
                     ->persist($order)
                     ->commit();
 
-               /* $flash = new FlashMessenger();
-                $flash->addMessage('Order created!');*/
+                /* $flash = new FlashMessenger();
+                 $flash->addMessage('Order created!');*/
 
                 $this->redirect()->toUrl('/orders/view/' . $order->getId());
-            }else{
-
+            } else {
                 $this->hydrator->hydrate(
                     $this->params()->fromPost(),
                     $order
@@ -89,4 +91,6 @@ class OrdersController extends AbstractActionController
         $viewModel->setVariable('order', $order);
         return $viewModel;
     }
+
+
 }
