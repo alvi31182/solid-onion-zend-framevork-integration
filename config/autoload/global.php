@@ -3,6 +3,7 @@
 use App\Domain\Entity\Customer;
 use App\Domain\Entity\Invoice;
 use App\Domain\Entity\Order;
+use App\Persitence\Hydrator\InvoiceHydrator;
 use App\Persitence\Hydrator\OrderHydrator;
 use App\Persitence\Zend\DataTable\CustomerTable;
 use App\Persitence\Zend\DataTable\InvoiceTable;
@@ -15,7 +16,7 @@ return [
         'factories' => [
             'Laminas\Db\Adapter\Adapter' => 'Laminas\Db\Adapter\AdapterServiceFactory',
 
-            'CustomerTable' => function($sm) {
+            'CustomerTable' => function ($sm) {
                 $factory = new TableGatewayFactory();
                 $hydrator = new ClassMethodsHydrator();
                 return new CustomerTable(
@@ -28,9 +29,17 @@ return [
                     $hydrator
                 );
             },
-            'InvoiceTable' => function($sm) use (&$date, &$total) {
+
+            'InvoiceHydrator' => function ($sm) {
+                return new InvoiceHydrator(
+                    new ClassMethodsHydrator(),
+                    $sm->get('OrderTable')
+                );
+            },
+
+            'InvoiceTable' => function ($sm) use (&$total) {
                 $factory = new TableGatewayFactory();
-                $hydrator = new ClassMethodsHydrator();
+                $hydrator = $sm->get('InvoiceHydrator');
                 return new InvoiceTable(
                     $factory->createGateway(
                         $sm->get('Laminas\Db\Adapter\Adapter'),
@@ -45,14 +54,14 @@ return [
                     $hydrator
                 );
             },
-            'OrderHydrator' => function($sm){
+            'OrderHydrator' => function ($sm) {
                 return new OrderHydrator(
                     new ClassMethodsHydrator(),
                     $sm->get('CustomerTable')
                 );
             },
 
-            'OrderTable' => function($sm){
+            'OrderTable' => function ($sm) {
                 $factory = new TableGatewayFactory();
                 $hydrator = $sm->get('OrderHydrator');
 

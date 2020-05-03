@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
-final class Invoice
+final class Invoice extends AbstractEntity
 {
     private Order $order;
     private \DateTimeImmutable $createdAt;

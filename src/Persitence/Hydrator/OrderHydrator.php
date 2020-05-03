@@ -30,7 +30,7 @@ class OrderHydrator implements HydratorInterface
         return $data;
     }
 
-    public function hydrate($data, $order)
+    public function hydrate(array $data, object $order)
     {
         $customer = null;
 
@@ -53,6 +53,7 @@ class OrderHydrator implements HydratorInterface
         if ($customer) {
             $order->setCustomer($customer);
         }
+
         return $order;
     }
 }

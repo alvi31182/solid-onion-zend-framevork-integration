@@ -34,7 +34,8 @@ return [
 
             Controller\InvoicesController::class => function ($sm) {
                 return new Controller\InvoicesController(
-                    $sm->get('InvoiceTable')
+                    $sm->get('InvoiceTable'),
+                    $sm->get('OrderTable')
                 );
             }
         ],
@@ -105,7 +106,11 @@ return [
             'invoices' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/invoices',
+                    'route' => '/invoices[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ],
                     'defaults' => [
                         'controller' => Controller\InvoicesController::class,
                         'action' => 'index',
