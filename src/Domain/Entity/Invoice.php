@@ -12,11 +12,10 @@ final class Invoice
     public function __construct(
         \DateTimeImmutable $invoiceDate,
         Order $order,
-        int $total
+        int $total = null
     ) {
         $this->createdAt = $invoiceDate;
         $this->order = $order;
-        $this->total = $total;
     }
 
     public function getOrder(): Order
@@ -43,8 +42,7 @@ final class Invoice
     {
         $this->createdAt = $invoiceDate;
     }
-
-
+    
     public function getTotal(): int
     {
         return $this->total;
