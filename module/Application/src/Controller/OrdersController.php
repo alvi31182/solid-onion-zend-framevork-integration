@@ -66,13 +66,9 @@ class OrdersController extends AbstractActionController
                     $order
                 );
 
-                //print_r($order); die();
                 $this->orderRepository->begin()
                     ->persist($order)
                     ->commit();
-
-                /* $flash = new FlashMessenger();
-                 $flash->addMessage('Order created!');*/
 
                 $this->redirect()->toUrl('/orders/view/' . $order->getId());
             } else {

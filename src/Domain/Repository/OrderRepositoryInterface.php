@@ -6,7 +6,7 @@ namespace App\Domain\Repository;
 
 use App\Core\Application\TransactionManager\TransactionHandlerInterface;
 
-interface OrderRepositoryInterface extends ReposytoryRead, TransactionHandlerInterface
+interface OrderRepositoryInterface extends ReposytoryRead
 {
     public function getUninvoicedOrders();
 }

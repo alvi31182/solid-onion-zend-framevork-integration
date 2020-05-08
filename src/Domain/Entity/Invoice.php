@@ -5,45 +5,33 @@ namespace App\Domain\Entity;
 
 final class Invoice extends AbstractEntity
 {
-    private Order $order;
-    private \DateTimeImmutable $createdAt;
-    private int $total;
+    private $order;
+    private $invoiceDate;
+    private $total;
 
-    public function __construct(
-        \DateTimeImmutable $invoiceDate,
-        Order $order,
-        int $total = null
-    ) {
-        $this->createdAt = $invoiceDate;
-        $this->order = $order;
-    }
 
-    public function getOrder(): Order
+    public function getOrder()
     {
         return $this->order;
     }
 
-    public function setOrder($order): void
+    public function setOrder(Order $order): void
     {
-        $this->order = $order;
+       $this->order = $order;
     }
 
-    public function getInvoiceDate(): \DateTimeImmutable
+    public function getInvoiceDate()
     {
-        return $this->createdAt;
+        return $this->invoiceDate;
     }
 
-    public function setInvoiceDate($date): void
+    public function setInvoiceDate(\DateTime $date): void
     {
-        $this->createdAt = $date;
+        $this->invoiceDate = $date;
     }
 
-    public function createdAt($invoiceDate): void
-    {
-        $this->createdAt = $invoiceDate;
-    }
 
-    public function getTotal(): int
+    public function getTotal()
     {
         return $this->total;
     }

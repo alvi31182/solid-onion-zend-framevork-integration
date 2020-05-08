@@ -19,6 +19,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www/solid
+    environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
     depends_on:
       - solidpostgres
     networks:

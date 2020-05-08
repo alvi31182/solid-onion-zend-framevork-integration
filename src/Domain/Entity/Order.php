@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
-final class Order extends AbstractEntity
+class Order extends AbstractEntity
 {
     private $customer;
     private $ordernumber;
@@ -14,7 +14,7 @@ final class Order extends AbstractEntity
     /**
      * @return mixed
      */
-    public function getCustomer()
+    public function getCustomer(): ?Customer
     {
         return $this->customer;
     }

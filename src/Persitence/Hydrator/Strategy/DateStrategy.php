@@ -2,18 +2,27 @@
 
 namespace App\Persitence\Hydrator\Strategy;
 
-use Laminas\Hydrator\Strategy\StrategyInterface;
+use DateTime;
+use Laminas\Hydrator\Strategy\DefaultStrategy;
 
-class DateStrategy implements StrategyInterface
+class DateStrategy extends DefaultStrategy
 {
+
+    public function hydrate($value, ?array $data = null)
+    {
+
+        if (is_string($value)) {
+            $value = new DateTime($value);
+
+        }
+        return $value;
+    }
 
     public function extract($value, ?object $object = null)
     {
-        // TODO: Implement extract() method.
-    }
-
-    public function hydrate($value, ?array $data)
-    {
-        // TODO: Implement hydrate() method.
+        if ($value instanceof DateTime) {
+            $value->format('Y-m-d');
+        }
+        return $value;
     }
 }

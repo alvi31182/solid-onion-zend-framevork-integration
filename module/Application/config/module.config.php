@@ -2,8 +2,10 @@
 
 namespace Application;
 
+use App\Domain\Factory\InvoiceFactory;
 use App\Domain\Service\InputFilter\CustomerInputFilter;
 use App\Domain\Service\InputFilter\OrderInputFilter;
+use App\Domain\Service\InvoicingService;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
@@ -35,7 +37,11 @@ return [
             Controller\InvoicesController::class => function ($sm) {
                 return new Controller\InvoicesController(
                     $sm->get('InvoiceTable'),
-                    $sm->get('OrderTable')
+                    $sm->get('OrderTable'),
+                    new InvoicingService(
+                        $sm->get('OrderTable'),
+                        new InvoiceFactory()
+                    )
                 );
             }
         ],

@@ -5,7 +5,7 @@ namespace App\Domain\Entity;
 
 abstract class AbstractEntity
 {
-    protected $id;
+    private $id;
 
     public function getId()
     {

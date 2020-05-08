@@ -7,10 +7,6 @@ use App\Domain\Entity\AbstractEntity;
 
 interface RepositoryInteface
 {
-    public function getById($id);
-
-    public function getAll();
-
     public function begin();
 
     public function persist(AbstractEntity $entity);

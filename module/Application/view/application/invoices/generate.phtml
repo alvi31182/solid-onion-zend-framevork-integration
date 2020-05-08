@@ -2,6 +2,7 @@
 <p>
     The following orders are available to be invoiced.
 </p>
+
 <?php if (empty($this->orders)): ?>
     <p class="alert alert-info">
         There are no orders available for invoice.
@@ -17,7 +18,9 @@
         <th class="text-right">Total</th>
     </tr>
     </thead>
+
     <?php foreach ($this->orders as $order): ?>
+
         <tr>
             <td>
                 <a href="/orders/view/<?= $this->escapeHtmlAttr($order->getId()) ?>">

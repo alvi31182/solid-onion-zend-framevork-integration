@@ -37,18 +37,15 @@ return [
                 );
             },
 
-            'InvoiceTable' => function ($sm) use (&$total) {
+            'InvoiceTable' => function ($sm) {
                 $factory = new TableGatewayFactory();
                 $hydrator = $sm->get('InvoiceHydrator');
+
                 return new InvoiceTable(
                     $factory->createGateway(
                         $sm->get('Laminas\Db\Adapter\Adapter'),
                         $hydrator,
-                        new Invoice(
-                            new \DateTimeImmutable(),
-                            new Order(),
-                            $total
-                        ),
+                        new Invoice(),
                         'invoices'
                     ),
                     $hydrator

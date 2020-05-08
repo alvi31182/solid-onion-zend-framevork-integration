@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace App\Domain\Service;
 
@@ -14,8 +15,7 @@ class InvoicingService
     public function __construct(
         OrderRepositoryInterface $orderRepository,
         InvoiceFactory $invoiceFactory
-    )
-    {
+    ) {
         $this->orderRepository = $orderRepository;
         $this->invoiceFacotory = $invoiceFactory;
     }
@@ -26,11 +26,12 @@ class InvoicingService
 
         $invoices = [];
 
-        foreach ($orders as $order){
+        foreach ($orders as $order) {
             $invoices[] = $this->invoiceFacotory->createFromOrder($order);
         }
 
-        return$invoices;
+        return $invoices;
     }
+
 
 }
